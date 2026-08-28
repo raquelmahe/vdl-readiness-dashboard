@@ -1,0 +1,6 @@
+{
+  "adapter": "bundled-json",
+  "url": "./data/sample-data.json",
+  "strict": true,
+  "fallback": "none"
+}
