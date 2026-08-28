@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Assess whether proposed Visual Design Language changes are ready for experimentation." />
+    <meta property="og:title" content="VDL Experiment Readiness" />
+    <meta property="og:description" content="Assess changes. Unblock experiments." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="__SITE_ORIGIN__/" />
+    <meta property="og:image" content="__SITE_ORIGIN__/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VDL Experiment Readiness" />
+    <meta name="twitter:description" content="Assess changes. Unblock experiments." />
+    <meta name="twitter:image" content="__SITE_ORIGIN__/og.png" />
+    <title>VDL Experiment Readiness</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#matrix">Skip to readiness matrix</a>
+    <header class="topbar">
+      <div class="brand" aria-label="VDL Experiment Readiness home">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span>VDL Experiment Readiness</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="data-badge" id="source-button" type="button"><span aria-hidden="true">◆</span> <span id="data-badge-text">Sample data</span></button>
+        <button class="button button-secondary" id="import-button" type="button">Import data</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Flights · Pilot experiment</p>
+          <h1 id="page-title">What can we test next?</h1>
+          <p class="hero-copy">Turn visual proposals into an evidence-backed capability backlog, without assuming every change needs a new Backpack component.</p>
+        </div>
+        <aside class="source-card" aria-label="Data source" id="source-card">
+          <div class="source-status"><span class="status-dot" aria-hidden="true"></span> Strategy source verified</div>
+          <strong>Tina’s Global Testing Capability brief</strong>
+          <span id="source-summary">Matrix rows below are illustrative and replaceable.</span>
+          <button class="text-button" id="data-strategy-button" type="button">View source &amp; adapter strategy <span aria-hidden="true">→</span></button>
+        </aside>
+      </section>
+
+      <section class="cycle" aria-label="Experiment operating cycle">
+        <p class="section-label">Operating cycle</p>
+        <ol class="cycle-steps" id="cycle-steps">
+          <li class="current"><button type="button" data-cycle="plan-release"><span>01</span> Plan release <small id="cycle-plan-release">0</small></button></li>
+          <li><button type="button" data-cycle="parallel-test"><span>02</span> Parallel test <small id="cycle-parallel-test">0</small></button></li>
+          <li><button type="button" data-cycle="learn"><span>03</span> Learn <small id="cycle-learn">0</small></button></li>
+          <li><button type="button" data-cycle="fold-in"><span>04</span> Fold in <small id="cycle-fold-in">0</small></button></li>
+        </ol>
+      </section>
+
+      <section class="summary-section" aria-labelledby="snapshot-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Decision snapshot</p>
+            <h2 id="snapshot-title">Readiness at a glance</h2>
+          </div>
+          <p id="snapshot-meta">Loading readiness data…</p>
+        </div>
+        <div class="summary-grid">
+          <button class="summary-card ready" type="button" data-readiness="ready-to-test">
+            <span class="summary-icon" aria-hidden="true">✓</span>
+            <strong>0</strong><span>Ready to test</span><small>Start with a controlled slice</small>
+          </button>
+          <button class="summary-card token-work" type="button" data-readiness="needs-token-configuration">
+            <span class="summary-icon" aria-hidden="true">T</span>
+            <strong>0</strong><span>Token configuration</span><small>Theme mapping required</small>
+          </button>
+          <button class="summary-card component-work" type="button" data-readiness="needs-component-refactoring">
+            <span class="summary-icon" aria-hidden="true">C</span>
+            <strong>0</strong><span>Component refactoring</span><small>Untangle local styling</small>
+          </button>
+          <button class="summary-card composition-work" type="button" data-readiness="needs-provisional-composition">
+            <span class="summary-icon" aria-hidden="true">◫</span>
+            <strong>0</strong><span>Provisional pattern</span><small>Test before formalising</small>
+          </button>
+          <button class="summary-card out" type="button" data-readiness="out-of-scope">
+            <span class="summary-icon" aria-hidden="true">×</span>
+            <strong>0</strong><span>Out of scope</span><small>Route to product testing</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="insights-section" aria-labelledby="breakdowns-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Portfolio signals</p>
+            <h2 id="breakdowns-title">Where work is concentrated</h2>
+          </div>
+          <p>Choose any segment to filter the matrix</p>
+        </div>
+        <div class="insights-grid">
+          <article class="insight-card">
+            <div class="insight-heading"><h3>Change mechanism</h3><span>Implementation shape</span></div>
+            <div class="breakdown-list" id="mechanism-breakdown"></div>
+          </article>
+          <article class="insight-card">
+            <div class="insight-heading"><h3>Owner</h3><span>Accountability</span></div>
+            <div class="breakdown-list" id="owner-breakdown"></div>
+          </article>
+          <article class="insight-card">
+            <div class="insight-heading"><h3>Milestone</h3><span>Planning horizon</span></div>
+            <div class="breakdown-list" id="milestone-breakdown"></div>
+          </article>
+          <article class="insight-card">
+            <div class="insight-heading"><h3>Blockers</h3><span>Required capability</span></div>
+            <div class="breakdown-list" id="blocker-breakdown"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="matrix-section" id="matrix" aria-labelledby="matrix-title">
+        <div class="matrix-toolbar">
+          <div>
+            <p class="section-label">Assessment workspace</p>
+            <h2 id="matrix-title">Readiness matrix</h2>
+          </div>
+          <label class="search-control" for="matrix-search">
+            <span class="visually-hidden">Search matrix</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="matrix-search" type="search" placeholder="Search changes, owners, tokens…" autocomplete="off" />
+          </label>
+          <button class="button button-filter" id="filter-button" type="button">Filters <span class="filter-count" id="filter-count">0</span></button>
+          <label class="select-control"><span class="visually-hidden">Group matrix by</span><select id="group-select"><option value="readiness">Group: Readiness</option><option value="changeMechanism">Group: Mechanism</option><option value="owner">Group: Owner</option><option value="targetMilestone">Group: Milestone</option><option value="blockerCategory">Group: Blocker</option><option value="none">No grouping</option></select></label>
+        </div>
+
+        <div class="saved-view-row" aria-label="Saved views">
+          <span>Quick views</span>
+          <button type="button" data-view="ready">Ready now</button>
+          <button type="button" data-view="token">Token work</button>
+          <button type="button" data-view="component">Component work</button>
+          <button type="button" data-view="composition">Composition candidates</button>
+          <button type="button" data-view="unowned">Unowned actions</button>
+        </div>
+
+        <div class="active-filters" id="active-filters" aria-label="Active filters"></div>
+
+        <div class="results-bar">
+          <p id="results-count" aria-live="polite">Loading matrix…</p>
+          <label class="sort-control">Sort
+            <select id="sort-select">
+              <option value="priority">Priority</option>
+              <option value="milestone">Milestone</option>
+              <option value="readiness">Readiness</option>
+              <option value="owner">Owner</option>
+              <option value="change">VDL change</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">VDL change</th>
+                <th scope="col">Mechanism</th>
+                <th scope="col">Readiness</th>
+                <th scope="col">Coverage</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Milestone</th>
+                <th scope="col">Next action</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-body"></tbody>
+          </table>
+        </div>
+        <div class="mobile-card-list" id="mobile-card-list"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">⌕</span><h3>No changes match this view</h3><p>Clear a filter or try a broader search.</p><button class="button" type="button" data-clear-all>Clear all filters</button>
+        </div>
+      </section>
+
+      <section class="backlog-section" id="backlog" aria-labelledby="backlog-title">
+        <div class="backlog-heading">
+          <div>
+            <p class="section-label">Plan the enabling work</p>
+            <h2 id="backlog-title">Prioritised capability backlog</h2>
+            <p>Derived from non-ready matrix items in the current view. Composition work stays provisional until evidence justifies a reusable pattern or component.</p>
+          </div>
+          <span class="backlog-count" id="backlog-count">0 capabilities</span>
+        </div>
+        <div class="backlog-list" id="backlog-list"></div>
+      </section>
+    </main>
+
+    <dialog class="panel-dialog" id="filter-dialog" aria-labelledby="filter-dialog-title">
+      <form method="dialog" class="dialog-shell">
+        <header><div><p class="section-label">Refine the view</p><h2 id="filter-dialog-title">Filters</h2></div><button class="icon-button" value="cancel" aria-label="Close filters">×</button></header>
+        <div class="filter-groups" id="filter-groups"></div>
+        <footer><button class="button button-secondary-dark" type="button" data-clear-all>Clear all</button><button class="button button-primary" value="apply">Show results</button></footer>
+      </form>
+    </dialog>
+
+    <dialog class="panel-dialog detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+      <div class="dialog-shell">
+        <header><div><p class="section-label" id="detail-eyebrow">Matrix item</p><h2 id="detail-title">VDL change</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close details">×</button></header>
+        <div id="detail-content"></div>
+      </div>
+    </dialog>
+
+    <dialog class="panel-dialog import-dialog" id="import-dialog" aria-labelledby="import-title">
+      <div class="dialog-shell">
+        <header><div><p class="section-label">Replace the starter rows</p><h2 id="import-title">Import matrix data</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close import">×</button></header>
+        <div class="import-body">
+          <div class="import-callout"><strong>Local and private</strong><span>The selected file is parsed in this browser session and is not uploaded.</span></div>
+          <label class="file-drop" for="data-file"><span class="file-icon" aria-hidden="true">⇧</span><strong>Choose a CSV or JSON file</strong><span>Use the documented schema. Multi-value CSV cells use <code>|</code>.</span><input id="data-file" type="file" accept=".csv,.json,application/json,text/csv" /></label>
+          <div class="import-status" id="import-status" aria-live="polite"></div>
+          <div class="import-actions"><a class="text-button" href="./data/matrix-template.csv" download>Download CSV template</a><button class="button button-secondary-dark" id="restore-sample-button" type="button">Restore starter sample</button></div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="panel-dialog source-dialog" id="source-dialog" aria-labelledby="source-title">
+      <div class="dialog-shell">
+        <header><div><p class="section-label">Source of truth</p><h2 id="source-title">A practical two-layer data strategy</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close source details">×</button></header>
+        <div class="source-dialog-body">
+          <div class="recommendation"><span>Recommended</span><strong>Author in a shared Sheet; publish a validated JSON snapshot.</strong><p>The brief remains the strategic reference. A row-level Sheet is easier for stakeholders to maintain, while the JSON snapshot gives the dashboard deterministic, reviewable data without exposing private credentials in the browser.</p></div>
+          <div class="data-flow" aria-label="Recommended source flow"><span>Google Sheet or Confluence table</span><b aria-hidden="true">→</b><span>Validate and normalise</span><b aria-hidden="true">→</b><span>Versioned JSON snapshot</span><b aria-hidden="true">→</b><span>This dashboard</span></div>
+          <div class="strategy-table-wrap"><table class="strategy-table"><thead><tr><th>Source</th><th>Good for</th><th>Trade-off</th><th>Recommended role</th></tr></thead><tbody><tr><th>Confluence</th><td>Goals, scope, decisions</td><td>Structured rows are brittle to parse</td><td>Strategy reference</td></tr><tr><th>Google Sheet</th><td>Collaborative row editing</td><td>Private access needs a secure sync</td><td>Preferred authoring source</td></tr><tr><th>Git-managed JSON</th><td>Versioning and static delivery</td><td>Less friendly to edit directly</td><td>Dashboard snapshot</td></tr><tr><th>Database / API</th><td>Audited real-time workflow</td><td>Highest maintenance cost</td><td>Future scale option</td></tr></tbody></table></div>
+          <a class="source-link" href="https://skyscanner.atlassian.net/wiki/spaces/UP1/pages/2754019336/Brief+Global+Testing+Capability+Strategy" target="_blank" rel="noreferrer">Open Tina’s verified strategy brief <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="error-template"><div class="load-error"><strong>We couldn’t load that data source.</strong><span>The sample will not be substituted automatically. Check the file, then try again.</span></div></template>
+  </body>
+</html>

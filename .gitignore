@@ -1,0 +1,5 @@
+dist/
+work/
+outputs/
+*.tgz
+.DS_Store
