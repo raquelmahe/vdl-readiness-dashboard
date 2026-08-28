@@ -48,8 +48,8 @@ const state = {
   dataset: null,
   records: [],
   search: "",
-  group: "readiness",
-  sort: "priority",
+  group: "none",
+  sort: "readiness",
   filters: Object.fromEntries(FILTER_DEFINITIONS.map(({ key }) => [key, new Set()])),
   validationWarnings: []
 };
@@ -263,7 +263,7 @@ function normaliseRecord(rawRecord) {
 
 function setLoadingState() {
   elements.resultsCount.textContent = "Loading matrix…";
-  elements.matrixBody.innerHTML = "<tr><td colspan=\"7\" class=\"loading-cell\">Loading the configured data source…</td></tr>";
+  elements.matrixBody.innerHTML = "<tr><td colspan=\"4\" class=\"loading-cell\">Loading the configured data source…</td></tr>";
 }
 
 function displayFatalLoadError(error) {
@@ -272,7 +272,7 @@ function displayFatalLoadError(error) {
   elements.dataBadgeText.textContent = "Source error";
   elements.sourceSummary.textContent = "The configured source could not be loaded. No sample data was silently substituted.";
   elements.resultsCount.textContent = "Data source unavailable";
-  elements.matrixBody.innerHTML = `<tr><td colspan="7"><div class="load-error"><strong>We couldn’t load the configured dataset.</strong><span>${escapeHtml(error.message)}</span><button class="action-link" type="button" id="retry-load">Try again →</button></div></td></tr>`;
+  elements.matrixBody.innerHTML = `<tr><td colspan="4"><div class="load-error"><strong>We couldn’t load the configured dataset.</strong><span>${escapeHtml(error.message)}</span><button class="action-link" type="button" id="retry-load">Try again →</button></div></td></tr>`;
   document.getElementById("retry-load")?.addEventListener("click", loadConfiguredDataset);
   renderBacklog();
 }
@@ -351,7 +351,8 @@ function renderActiveFilters() {
     });
   });
   if (state.search) chips.push(`<span>Search: “${escapeHtml(state.search)}” <button type="button" id="clear-search" aria-label="Clear search">×</button></span>`);
-  elements.activeFilters.innerHTML = chips.length ? `${chips.join("")}<button class="clear-filters" type="button" data-clear-all>Clear all</button>` : "<span class=\"no-filter-copy\">Showing the full dataset</span>";
+  elements.activeFilters.hidden = chips.length === 0;
+  elements.activeFilters.innerHTML = chips.length ? `${chips.join("")}<button class="clear-filters" type="button" data-clear-all>Clear all</button>` : "";
   document.getElementById("clear-search")?.addEventListener("click", () => {
     state.search = "";
     elements.matrixSearch.value = "";
@@ -369,7 +370,7 @@ function renderMatrix() {
   elements.mobileCardList.hidden = filtered.length === 0;
 
   elements.matrixBody.innerHTML = Array.from(grouped.entries()).map(([groupName, records]) => {
-    const groupHeader = state.group === "none" ? "" : `<tr class="group-row"><th colspan="7" scope="rowgroup">${escapeHtml(groupLabel(state.group, groupName))}<span>${records.length}</span></th></tr>`;
+    const groupHeader = state.group === "none" ? "" : `<tr class="group-row"><th colspan="4" scope="rowgroup">${escapeHtml(groupLabel(state.group, groupName))}<span>${records.length}</span></th></tr>`;
     return groupHeader + records.map(renderTableRow).join("");
   }).join("");
 
@@ -382,16 +383,12 @@ function renderMatrix() {
 function renderTableRow(record) {
   const mechanism = MECHANISMS[record.changeMechanism];
   const readiness = READINESS[record.readiness];
-  const coverage = renderCoverage(record.surfacePlatformCoverage);
   const owner = renderOwner(record.owner);
   const action = renderAction(record);
   return `<tr class="mechanism-${escapeHtml(record.changeMechanism)}">
-    <th scope="row"><button class="row-title" type="button" data-record-id="${escapeHtml(record.id)}"><strong>${escapeHtml(record.vdlChange)}</strong><small>${escapeHtml(record.changeSummary || record.id)}</small></button></th>
-    <td>${renderMechanismPill(mechanism)}</td>
+    <th scope="row"><button class="row-title" type="button" data-record-id="${escapeHtml(record.id)}"><strong>${escapeHtml(record.vdlChange)}</strong><small>${escapeHtml(record.changeSummary || record.id)}</small></button><div class="row-mechanism">${renderMechanismPill(mechanism)}</div></th>
     <td>${renderReadinessPill(record.readiness, readiness)}</td>
-    <td>${coverage}</td>
-    <td>${owner}</td>
-    <td>${escapeHtml(record.targetMilestone || "—")}</td>
+    <td><div class="plan-cell">${owner}<small>${escapeHtml(record.targetMilestone || "No milestone")}</small></div></td>
     <td>${action}</td>
   </tr>`;
 }

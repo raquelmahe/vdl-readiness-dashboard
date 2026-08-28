@@ -22,7 +22,7 @@
     <header class="topbar">
       <div class="brand" aria-label="VDL Experiment Readiness home">
         <span class="brand-mark" aria-hidden="true">V</span>
-        <span>VDL Experiment Readiness</span>
+        <span>VDL readiness</span>
       </div>
       <div class="topbar-actions">
         <button class="data-badge" id="source-button" type="button"><span aria-hidden="true">◆</span> <span id="data-badge-text">Sample data</span></button>
@@ -35,85 +35,83 @@
         <div>
           <p class="eyebrow">Flights · Pilot experiment</p>
           <h1 id="page-title">What can we test next?</h1>
-          <p class="hero-copy">Turn visual proposals into an evidence-backed capability backlog, without assuming every change needs a new Backpack component.</p>
+          <p class="hero-copy">See what is ready, what is blocked, and who owns the next move.</p>
         </div>
         <aside class="source-card" aria-label="Data source" id="source-card">
-          <div class="source-status"><span class="status-dot" aria-hidden="true"></span> Strategy source verified</div>
-          <strong>Tina’s Global Testing Capability brief</strong>
+          <div class="source-status"><span class="status-dot" aria-hidden="true"></span> Verified strategy context</div>
           <span id="source-summary">Matrix rows below are illustrative and replaceable.</span>
-          <button class="text-button" id="data-strategy-button" type="button">View source &amp; adapter strategy <span aria-hidden="true">→</span></button>
+          <button class="text-button" id="data-strategy-button" type="button">Source details <span aria-hidden="true">→</span></button>
         </aside>
-      </section>
-
-      <section class="cycle" aria-label="Experiment operating cycle">
-        <p class="section-label">Operating cycle</p>
-        <ol class="cycle-steps" id="cycle-steps">
-          <li class="current"><button type="button" data-cycle="plan-release"><span>01</span> Plan release <small id="cycle-plan-release">0</small></button></li>
-          <li><button type="button" data-cycle="parallel-test"><span>02</span> Parallel test <small id="cycle-parallel-test">0</small></button></li>
-          <li><button type="button" data-cycle="learn"><span>03</span> Learn <small id="cycle-learn">0</small></button></li>
-          <li><button type="button" data-cycle="fold-in"><span>04</span> Fold in <small id="cycle-fold-in">0</small></button></li>
-        </ol>
       </section>
 
       <section class="summary-section" aria-labelledby="snapshot-title">
         <div class="section-heading">
-          <div>
-            <p class="section-label">Decision snapshot</p>
-            <h2 id="snapshot-title">Readiness at a glance</h2>
-          </div>
+          <h2 id="snapshot-title">Readiness</h2>
           <p id="snapshot-meta">Loading readiness data…</p>
         </div>
         <div class="summary-grid">
           <button class="summary-card ready" type="button" data-readiness="ready-to-test">
-            <span class="summary-icon" aria-hidden="true">✓</span>
-            <strong>0</strong><span>Ready to test</span><small>Start with a controlled slice</small>
+            <strong>0</strong><span>Ready to test</span>
           </button>
           <button class="summary-card token-work" type="button" data-readiness="needs-token-configuration">
-            <span class="summary-icon" aria-hidden="true">T</span>
-            <strong>0</strong><span>Token configuration</span><small>Theme mapping required</small>
+            <strong>0</strong><span>Token configuration</span>
           </button>
           <button class="summary-card component-work" type="button" data-readiness="needs-component-refactoring">
-            <span class="summary-icon" aria-hidden="true">C</span>
-            <strong>0</strong><span>Component refactoring</span><small>Untangle local styling</small>
+            <strong>0</strong><span>Component refactoring</span>
           </button>
           <button class="summary-card composition-work" type="button" data-readiness="needs-provisional-composition">
-            <span class="summary-icon" aria-hidden="true">◫</span>
-            <strong>0</strong><span>Provisional pattern</span><small>Test before formalising</small>
+            <strong>0</strong><span>Provisional pattern</span>
           </button>
           <button class="summary-card out" type="button" data-readiness="out-of-scope">
-            <span class="summary-icon" aria-hidden="true">×</span>
-            <strong>0</strong><span>Out of scope</span><small>Route to product testing</small>
+            <strong>0</strong><span>Out of scope</span>
           </button>
         </div>
       </section>
 
-      <section class="insights-section" aria-labelledby="breakdowns-title">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">Portfolio signals</p>
-            <h2 id="breakdowns-title">Where work is concentrated</h2>
-          </div>
-          <p>Choose any segment to filter the matrix</p>
+      <details class="planning-panel">
+        <summary>
+          <span><strong>Planning breakdowns</strong><small>Cycle, mechanism, owner, milestone and blockers</small></span>
+          <span class="disclosure-label" aria-hidden="true"></span>
+        </summary>
+        <div class="planning-content">
+          <section class="cycle" aria-label="Experiment operating cycle">
+            <p class="section-label">Operating cycle</p>
+            <ol class="cycle-steps" id="cycle-steps">
+              <li class="current"><button type="button" data-cycle="plan-release"><span>01</span> Plan release <small id="cycle-plan-release">0</small></button></li>
+              <li><button type="button" data-cycle="parallel-test"><span>02</span> Parallel test <small id="cycle-parallel-test">0</small></button></li>
+              <li><button type="button" data-cycle="learn"><span>03</span> Learn <small id="cycle-learn">0</small></button></li>
+              <li><button type="button" data-cycle="fold-in"><span>04</span> Fold in <small id="cycle-fold-in">0</small></button></li>
+            </ol>
+          </section>
+
+          <section class="insights-section" aria-labelledby="breakdowns-title">
+            <div class="section-heading">
+              <div>
+                <h2 id="breakdowns-title">Portfolio breakdowns</h2>
+              </div>
+              <p>Choose any segment to filter the matrix</p>
+            </div>
+            <div class="insights-grid">
+              <article class="insight-card">
+                <div class="insight-heading"><h3>Change mechanism</h3><span>Implementation shape</span></div>
+                <div class="breakdown-list" id="mechanism-breakdown"></div>
+              </article>
+              <article class="insight-card">
+                <div class="insight-heading"><h3>Owner</h3><span>Accountability</span></div>
+                <div class="breakdown-list" id="owner-breakdown"></div>
+              </article>
+              <article class="insight-card">
+                <div class="insight-heading"><h3>Milestone</h3><span>Planning horizon</span></div>
+                <div class="breakdown-list" id="milestone-breakdown"></div>
+              </article>
+              <article class="insight-card">
+                <div class="insight-heading"><h3>Blockers</h3><span>Required capability</span></div>
+                <div class="breakdown-list" id="blocker-breakdown"></div>
+              </article>
+            </div>
+          </section>
         </div>
-        <div class="insights-grid">
-          <article class="insight-card">
-            <div class="insight-heading"><h3>Change mechanism</h3><span>Implementation shape</span></div>
-            <div class="breakdown-list" id="mechanism-breakdown"></div>
-          </article>
-          <article class="insight-card">
-            <div class="insight-heading"><h3>Owner</h3><span>Accountability</span></div>
-            <div class="breakdown-list" id="owner-breakdown"></div>
-          </article>
-          <article class="insight-card">
-            <div class="insight-heading"><h3>Milestone</h3><span>Planning horizon</span></div>
-            <div class="breakdown-list" id="milestone-breakdown"></div>
-          </article>
-          <article class="insight-card">
-            <div class="insight-heading"><h3>Blockers</h3><span>Required capability</span></div>
-            <div class="breakdown-list" id="blocker-breakdown"></div>
-          </article>
-        </div>
-      </section>
+      </details>
 
       <section class="matrix-section" id="matrix" aria-labelledby="matrix-title">
         <div class="matrix-toolbar">
@@ -127,15 +125,11 @@
             <input id="matrix-search" type="search" placeholder="Search changes, owners, tokens…" autocomplete="off" />
           </label>
           <button class="button button-filter" id="filter-button" type="button">Filters <span class="filter-count" id="filter-count">0</span></button>
-          <label class="select-control"><span class="visually-hidden">Group matrix by</span><select id="group-select"><option value="readiness">Group: Readiness</option><option value="changeMechanism">Group: Mechanism</option><option value="owner">Group: Owner</option><option value="targetMilestone">Group: Milestone</option><option value="blockerCategory">Group: Blocker</option><option value="none">No grouping</option></select></label>
+          <label class="select-control"><span class="visually-hidden">Group matrix by</span><select id="group-select"><option value="none" selected>No grouping</option><option value="readiness">Group: Readiness</option><option value="changeMechanism">Group: Mechanism</option><option value="owner">Group: Owner</option><option value="targetMilestone">Group: Milestone</option><option value="blockerCategory">Group: Blocker</option></select></label>
         </div>
 
         <div class="saved-view-row" aria-label="Saved views">
-          <span>Quick views</span>
-          <button type="button" data-view="ready">Ready now</button>
-          <button type="button" data-view="token">Token work</button>
-          <button type="button" data-view="component">Component work</button>
-          <button type="button" data-view="composition">Composition candidates</button>
+          <span>Shortcut</span>
           <button type="button" data-view="unowned">Unowned actions</button>
         </div>
 
@@ -145,9 +139,9 @@
           <p id="results-count" aria-live="polite">Loading matrix…</p>
           <label class="sort-control">Sort
             <select id="sort-select">
+              <option value="readiness" selected>Readiness</option>
               <option value="priority">Priority</option>
               <option value="milestone">Milestone</option>
-              <option value="readiness">Readiness</option>
               <option value="owner">Owner</option>
               <option value="change">VDL change</option>
             </select>
@@ -159,11 +153,8 @@
             <thead>
               <tr>
                 <th scope="col">VDL change</th>
-                <th scope="col">Mechanism</th>
                 <th scope="col">Readiness</th>
-                <th scope="col">Coverage</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Milestone</th>
+                <th scope="col">Plan</th>
                 <th scope="col">Next action</th>
               </tr>
             </thead>
@@ -177,15 +168,18 @@
       </section>
 
       <section class="backlog-section" id="backlog" aria-labelledby="backlog-title">
-        <div class="backlog-heading">
-          <div>
-            <p class="section-label">Plan the enabling work</p>
-            <h2 id="backlog-title">Prioritised capability backlog</h2>
-            <p>Derived from non-ready matrix items in the current view. Composition work stays provisional until evidence justifies a reusable pattern or component.</p>
-          </div>
-          <span class="backlog-count" id="backlog-count">0 capabilities</span>
-        </div>
-        <div class="backlog-list" id="backlog-list"></div>
+        <details class="backlog-details">
+          <summary class="backlog-heading">
+            <div>
+              <p class="section-label">Plan the enabling work</p>
+              <h2 id="backlog-title">Capability backlog</h2>
+              <p>Prioritised blockers derived from the current matrix view.</p>
+            </div>
+            <span class="backlog-count" id="backlog-count">0 capabilities</span>
+          </summary>
+          <div class="backlog-list" id="backlog-list"></div>
+          <p class="backlog-note">Compositional work stays provisional until evidence supports a reusable pattern or component.</p>
+        </details>
       </section>
     </main>
 
